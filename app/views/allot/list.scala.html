@@ -1,0 +1,67 @@
+@import DTOs.{Movie, Screen}
+@(screen: Screen, movies: List[Movie])
+<!doctype html>
+<html lang="en">
+    <head>
+            <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+
+        <title>Screen @screen.getScreenNumber</title>
+    </head>
+    <body>
+        <div id="middle">
+            <div >
+                <h2>Movie Allotted To Screen @screen.getScreenNumber :Movie Name @screen.getMovie.getMovieName</h2>
+                @if(screen.getMovie != null) {
+                    <div class="card-columns">
+                        <div class="card m-2" style="width: 18rem;">
+
+                            <div class="card-footer">
+                                <a href='@routes.AllotMovieController.removeAllocation(screen.getMovie.getId, screen.getMultiplex.getId, screen.getScreenNumber)' class="btn btn-danger a-btn-slide-text">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <span><strong>Remove Allocation</strong></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            <div>
+                <h2>Movies Available</h2>
+                <div>
+                    <table class="table table-hover" style="height:80%"><thead>
+                    <th scope ="col">Movie Name</th>
+                    <th scope ="col">Directed By</th>
+                    <th scope ="col">Producer By</th>
+                    <th scope ="col">Movie Category</th>
+                    <th scope ="col">Release Date</th>
+                    <th scope="col">Action</th>
+                    </thead>
+                        <tbody style="overflow:auto">
+                        @for(movie <- movies) {
+                        <tr>
+                            <td>@movie.getMovieName</td>
+                            <td> @movie.getDirector</td>
+                            <td>@movie.getProducer</td>
+                            <td>@movie.getCategory</td>
+                            <td>@movie.getReleaseDate</td>
+                            <td>         @if(screen.getMovie == null) {
+                                <div class="card-footer">
+                                    <a href="@routes.AllotMovieController.allot(movie.getId, screen.getMultiplex.getId, screen.getScreenNumber)" class="btn btn-success a-btn-slide-text">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        <span><strong>Allot</strong></span>
+                                    </a>
+                                </div>
+                                }</td></tr>
+                        }    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

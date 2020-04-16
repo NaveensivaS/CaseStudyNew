@@ -1,0 +1,29 @@
+@()
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Movie & Theatre Management</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+    </head>
+    <body>
+        <div class="search" style="background-color:lightblue">
+            <h2 style="text-align:center;padding: 10px 10px 10px 10px">Movie and Multiplex Management</h2>
+        </div>
+        <div style="margin-top:15%;margin-left:20%">
+            <button type="button" class="btn btn-info col-xs-4" style="height: 9rem; width: 18rem;" onclick="location.href = '@routes.MovieController.listMovie()'">
+                Movie management
+            </button>
+            <button type="button" class="btn btn-info col-xs-4" style="height: 9rem; width: 18rem;" onclick="location.href = '@routes.MultiplexController.listMultiplex()'">
+                Multiplex management & Allocation
+            </button>
+            <button type="button" class="btn btn-info col-xs-4" style="height: 9rem; width: 18rem;" onclick="location.href = '@routes.SearchController.index()'">
+                Search
+            </button>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    </body>
+</html>

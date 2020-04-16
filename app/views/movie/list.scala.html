@@ -1,0 +1,50 @@
+@import DTOs.Movie
+@(movies: List[Movie])
+<!doctype html>
+<html lang="en">
+    <head>
+            <!-- Required meta tags -->
+        <meta charset="utf-8">
+
+            <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+         <title>Movies</title>
+    </head>
+    <body>
+
+    <div class="home" style="background-color:lightblue" onclick="location.href = '@routes.HomeController.index()'">
+        <h2 style="text-align:center;padding: 10px 10px 10px 10px">Movie and Multiplex Management</h2>
+    </div>
+    <div>
+        <table class="table table-hover" style="height:80%"><thead>
+        <th scope ="col">Movie Name</th>
+        <th scope ="col">Directed By</th>
+        <th scope ="col">Producer By</th>
+        <th scope ="col">Movie Category</th>
+        <th scope ="col">Release Date</th>
+        <th scope="col">Action</th>
+        </thead>
+            <tbody style="overflow:auto">
+            @for(movie <- movies) {
+            <tr>
+            <td>@movie.getMovieName</td>
+            <td> @movie.getDirector</td>
+            <td>@movie.getProducer</td>
+            <td>@movie.getCategory</td>
+            <td>@movie.getReleaseDate</td>
+            <td> <a href='@routes.MovieController.editMovie(movie.getId)' class="btn btn-primary a-btn-slide-text">
+                <span class="glyphicon glyphicon-warning" aria-hidden="true"></span>
+                <span>Update</span>
+            </a>
+                <a href='@routes.MovieController.delete(movie.getId)' class="btn btn-danger a-btn-slide-text">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span>Delete</span>
+                </a></td></tr>
+            }    </tbody>
+        </table>
+    </div>
+<div>   <button type="button" class="btn btn-primary m-3" style=" width: 18rem;" onclick="location.href = '@routes.MovieController.createMovie()'">
+    Add New Movie
+</button></div>
+    </body>
+</html>

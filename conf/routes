@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET         /                                 controllers.HomeController.index()
+GET         /movie                            controllers.MovieController.listMovie(request:Request)
+GET         /movie/create                     controllers.MovieController.createMovie(request:Request)
+POST        /movie/add                        controllers.MovieController.addMovie(request:Request,id:Integer)
+GET         /movie/editMovie                  controllers.MovieController.editMovie(request:Request,ID:Integer)
+GET         /movie/delete                     controllers.MovieController.delete(request:Request,id:Integer)
+
+GET         /multiplex                        controllers.MultiplexController.listMultiplex(request:Request)
+GET         /multiplex/createMultiplex        controllers.MultiplexController.createMultiplex(request:Request)
+POST        /multiplex/addMultiplex           controllers.MultiplexController.addMultiplex(request:Request,id:Integer)
+GET         /multiplex/edit                   controllers.MultiplexController.editMultiplex(request:Request,id:Integer)
+GET         /multiplex/delete                 controllers.MultiplexController.delete(request:Request,id:Integer)
+
+GET         /listScreen                       controllers.AllotMovieController.listScreen(request:Request, multiplexID:Integer)
+GET         /allot                            controllers.AllotMovieController.allot(request:Request,movieID:Integer, multiplexID:Integer,screenNumber:Integer)
+GET         /allotList                        controllers.AllotMovieController.allotList(request:Request,multiplexID:Integer,screenNumber:Integer)
+GET         /removeAllocation                 controllers.AllotMovieController.removeAllocation(request:Request,movieID:Integer, multiplexID:Integer,screenNumber:Integer)
+
+GET         /search                            controllers.SearchController.index(request:Request)
+POST        /search/add                        controllers.SearchController.addMovie(request:Request)
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)

@@ -1,0 +1,36 @@
+@import DTOs.Screen
+@(screens: List[Screen])
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+    <title>Search</title>
+</head>
+<body>
+
+<div class="home" style="background-color:lightblue" onclick="location.href = '@routes.HomeController.index()'">
+    <h2 style="text-align:center;padding: 10px 10px 10px 10px">Movie and Multiplex Management</h2>
+</div>
+<div>
+    <table class="table table-hover" style="height:80%"><thead>
+    <th scope ="col">Screen Name</th>
+    <th scope ="col">Movie Name</th>
+    <th scope ="col">Screen No</th>
+    </thead>
+        <tbody style="overflow:auto">
+        @for(screen <- screens) {
+        <tr>
+            <td>@screen.getMovie.getMovieName</td>
+            <td> @screen.getMultiplex.getName</td>
+            <td>@screen.getScreenNumber</td>
+</tr>
+        }    </tbody>
+    </table>
+</div>
+
+</body>
+</html>

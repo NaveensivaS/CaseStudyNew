@@ -1,0 +1,33 @@
+@import DTOs.Multiplex
+@(multiplex: Multiplex)
+<!doctype html>
+<html lang="en">
+    <head>
+            <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/default.css")">
+
+            <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
+
+        <title>Movies</title>
+    </head>
+    <body>
+    <div class="home" style="background-color:lightblue" onclick="location.href = '@routes.HomeController.index()'">
+        <h2 style="text-align:center;padding: 10px 10px 10px 10px">Movie and Multiplex Management</h2>
+    </div>
+        <div  style="margin-top:15%;margin-left:20%;margin-right:20%">
+
+                @for(no <- 1 to multiplex.getNumberOfScreens) {
+
+            <button type="button" class="btn btn-info col-xs-4" style="height: 9rem; width: 18rem;"
+                    onclick="location.href = '@routes.AllotMovieController.allotList(multiplex.getId,no)'">
+                Screen @no
+            </button>
+
+                }
+            </div>
+
+    </body>
+</html>
